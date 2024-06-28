@@ -8,8 +8,6 @@ app.use('/', router.get('/', (req, res)=>{
     res.status(200).send("<h1>API - CHAT</h1>");
 }));
 
-module.exports=app;
-
 app.use('/',router.get("/sobre",(req, res, next)=>{
     res.status(200).send({
         "nome":"API - CHAT",
@@ -17,5 +15,7 @@ app.use('/',router.get("/sobre",(req, res, next)=>{
         "autor":"Airon Lazzaretti"
     });
 }));
+
+app.use("/salas") // PAREI AQUI
 
 module.exports = app;
