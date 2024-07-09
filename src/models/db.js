@@ -7,6 +7,8 @@ async function connect(){
 
     const client = new MongoClient(process.env.DB_CONNECTION_STRING);
     await client.connect();
+    // await client.db("admin").command({ ping: 1 });
+    // console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
     singleton = client.db(process.env.DB_DATABASE);
     return singleton;
