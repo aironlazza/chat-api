@@ -3,8 +3,8 @@
 //         "status":"OK",
 //         "controller":"sala"
 //     }
-// }   
+// }
+let salaModel = require('../models/salaModel');
 exports.get=()=>{
-    let salaModel = require('../models/salaModel');
-    return salaModel.listarSalas()
+    return salaModel.listarSalas();
 }

@@ -10,4 +10,4 @@ exports.entrar = async(nick)=>{
             "nick":nick
         }
     }
-}
+};

@@ -18,4 +18,10 @@ let findAll = async(collection)=>{
     const db = await connect();
     return await db.collection(collection).find().toArray();
 }
-module.exports = {findAll}
+
+async function insertOne(collection, object){
+    const db = await connect();
+    return db.collection(collection).insertOne(object);
+}
+
+module.exports = {findAll,insertOne};
