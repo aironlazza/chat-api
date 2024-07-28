@@ -5,6 +5,7 @@ const checkToken = async(token, id, key) => jwt.verify(token, key, (err, decoded
             console.log("decoded: " + decoded.id);
             console.log("id: "+id);
             if(decoded.id == id)
+                console.log("usuário autorizado")
                 return true;
         }
         else console.log("erro: "+err);
@@ -12,7 +13,6 @@ const checkToken = async(token, id, key) => jwt.verify(token, key, (err, decoded
     });
 
 const setToken = async (id,key) =>{
-    console.log(id);
     if(id){
         return jwt.sign({id}, key, {expiresIn: 28800});
     }

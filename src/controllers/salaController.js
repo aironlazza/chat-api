@@ -46,3 +46,11 @@ exports.enviarMensagem = async(nick, msg, idsala) =>{
         timestamp : timestamp
     }
 }
+
+exports.buscarMensagens = async(idsala,timestamp)=>{
+    let mensagens = await salaModel.buscarMensagens(idsala,timestamp);
+    return {
+        "timestamp" : mensagens[mensagens.length - 1].timestamp,
+        "msgs" : mensagens
+    }
+}
