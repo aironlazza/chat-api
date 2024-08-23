@@ -31,9 +31,9 @@ app.post("/entrar", async(req,res,next)=>{
 //     res.status(200).send(resp);
 // }));
 
-const salas = express.Router();
+const sala = express.Router();
 
-salas.get('/',async(req,res,next)=>{
+app.get('/salas',async(req,res,next)=>{
     if(await token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick)){
         const salaController = require("./controllers/salaController");
         let resp = await salaController.get();
@@ -42,7 +42,7 @@ salas.get('/',async(req,res,next)=>{
     else res.status(400).send({error:"usuario nao autorizado"});
 });
 
-salas.put("/entrar",async(req,res,next)=>{
+sala.put("/entrar",async(req,res,next)=>{
     if(await token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick)){
         const salaController = require("./controllers/salaController");
         let resp = await salaController.entrar(req.headers.iduser, req.query.idsala);
@@ -51,7 +51,7 @@ salas.put("/entrar",async(req,res,next)=>{
     else res.status(400).send({error:"erro ao entrar na sala"});
 });
 
-salas.get("/mensagens", async(req,res,next)=>{
+sala.get("/mensagens", async(req,res,next)=>{
     if(await token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick)){
         const salaController = require("./controllers/salaController");
         let resp = await salaController.buscarMensagens(req.query.idsala,req.query.timestamp);
@@ -60,7 +60,7 @@ salas.get("/mensagens", async(req,res,next)=>{
     else res.status(400).send({error:"erro ao enviar mensagem"});
 });
 
-salas.post("/mensagens/enviar", async(req,res,next)=>{
+sala.post("/mensagem", async(req,res,next)=>{
     if(await token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick)){
         const salaController = require("./controllers/salaController");
         let resp = await salaController.enviarMensagem(req.headers.nick, req.body.msg, req.query.idsala);
@@ -70,6 +70,6 @@ salas.post("/mensagens/enviar", async(req,res,next)=>{
 });
 
 
-app.use("/salas", salas);
+app.use("/sala", sala);
 
 module.exports = app;
