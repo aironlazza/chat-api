@@ -45,7 +45,7 @@ app.get('/salas',async(req,res,next)=>{
 sala.put("/entrar",async(req,res,next)=>{
     if(await token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick)){
         const salaController = require("./controllers/salaController");
-        let resp = await salaController.entrar(req.headers.iduser, req.query.idsala);
+        let resp = await salaController.entrar(req.headers.iduser, req.query.idSala);
         res.status(200).send(resp);
     }
     else res.status(400).send({error:"erro ao entrar na sala"});
@@ -54,7 +54,7 @@ sala.put("/entrar",async(req,res,next)=>{
 sala.get("/mensagens", async(req,res,next)=>{
     if(await token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick)){
         const salaController = require("./controllers/salaController");
-        let resp = await salaController.buscarMensagens(req.query.idsala,req.query.timestamp);
+        let resp = await salaController.buscarMensagens(req.query.idSala,req.query.timestamp);
         res.status(200).send(resp);
     }
     else res.status(400).send({error:"erro ao enviar mensagem"});
@@ -63,7 +63,7 @@ sala.get("/mensagens", async(req,res,next)=>{
 sala.post("/mensagem", async(req,res,next)=>{
     if(await token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick)){
         const salaController = require("./controllers/salaController");
-        let resp = await salaController.enviarMensagem(req.headers.nick, req.body.msg, req.query.idsala);
+        let resp = await salaController.enviarMensagem(req.headers.nick, req.body.msg, req.query.idSala);
         res.status(200).send(resp);
     }
     else res.status(400).send({error:"erro ao enviar mensagem"});
