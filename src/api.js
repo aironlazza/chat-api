@@ -48,7 +48,7 @@ sala.put("/entrar",async(req,res,next)=>{
         let resp = await salaController.entrar(req.headers.iduser, req.query.idSala);
         res.status(200).send(resp);
     }
-    else res.status(400).send({error:"erro ao entrar na sala"});
+    else res.status(400).send({error:"usuario nao autorizado"});
 });
 
 sala.get("/mensagens", async(req,res,next)=>{
@@ -57,7 +57,7 @@ sala.get("/mensagens", async(req,res,next)=>{
         let resp = await salaController.buscarMensagens(req.query.idSala,req.query.timestamp);
         res.status(200).send(resp);
     }
-    else res.status(400).send({error:"erro ao enviar mensagem"});
+    else res.status(400).send({error:"usuario nao autorizado"});
 });
 
 sala.post("/mensagem", async(req,res,next)=>{
@@ -66,9 +66,8 @@ sala.post("/mensagem", async(req,res,next)=>{
         let resp = await salaController.enviarMensagem(req.headers.nick, req.body.msg, req.query.idSala);
         res.status(200).send(resp);
     }
-    else res.status(400).send({error:"erro ao enviar mensagem"});
+    else res.status(400).send({error:"usuario nao autorizado"});
 });
-
 
 app.use("/sala", sala);
 

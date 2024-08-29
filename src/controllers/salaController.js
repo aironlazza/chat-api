@@ -49,6 +49,11 @@ exports.enviarMensagem = async(nick, msg, idsala) =>{
 
 exports.buscarMensagens = async(idsala,timestamp)=>{
     let mensagens = await salaModel.buscarMensagens(idsala,timestamp);
+    if(!mensagens[0]){
+        return {
+            "error":"Não há mensagens ainda. Envie uma mensagem para começar."
+        }
+    }
     return {
         "timestamp" : mensagens[mensagens.length - 1].timestamp,
         "msgs" : mensagens
