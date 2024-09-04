@@ -16,8 +16,8 @@ async function alterarUsuario(user){
     return await db.updateOne("usuario",user, {_id : user._id});
 }
 
-async function sair(_id){
+async function removerUsuario(iduser){
     return await db.deleteOne("usuario",iduser);
 }
 
-module.exports = {registrarUsuario, buscarUsuario, alterarUsuario, sair};
+module.exports = {registrarUsuario, buscarUsuario, alterarUsuario, removerUsuario};

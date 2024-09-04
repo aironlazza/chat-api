@@ -74,7 +74,8 @@ app.use("/sala", sala);
 app.delete("/sair", async(req,res,next)=>{
     if(await token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick)){
         const usuarioController = require("./controllers/usuarioController");
-        
+        let resp = await usuarioController.sair(req.headers.iduser);
+        res.status(200).send(resp);
     }
     else res.status(400).send({error:"usuario nao autorizado"});
 });
