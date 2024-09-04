@@ -16,8 +16,8 @@ exports.entrar = async(iduser, idsala)=>{
     let usuarioModel = require('../models/usuarioModel');
     let user = await usuarioModel.buscarUsuario(iduser);
     user.sala = {
-        _id : sala._id,
-        nome : sala.nome,
+        _id: sala._id,
+        nome: sala.nome,
         tipo: sala.tipo
     };
     if(await usuarioModel.alterarUsuario(user)){

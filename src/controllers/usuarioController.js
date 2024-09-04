@@ -11,3 +11,11 @@ exports.entrar = async(nick)=>{
         }
     }
 };
+exports.sair = async(_id)=>{
+    let resp = await usuarioModel.sair(_id);
+    if(resp.deletedCount == 1){
+        return {"msg": "Saiu com sucesso."};
+    }
+    else
+        return {"error": "Não foi possível encontrar o usuário"}
+}

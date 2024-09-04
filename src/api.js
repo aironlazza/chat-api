@@ -71,4 +71,12 @@ sala.post("/mensagem", async(req,res,next)=>{
 
 app.use("/sala", sala);
 
+app.delete("/sair", async(req,res,next)=>{
+    if(await token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick)){
+        const usuarioController = require("./controllers/usuarioController");
+        
+    }
+    else res.status(400).send({error:"usuario nao autorizado"});
+});
+
 module.exports = app;

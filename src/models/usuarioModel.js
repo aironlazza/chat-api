@@ -9,11 +9,15 @@ async function registrarUsuario(nick){
 }
 
 async function buscarUsuario(iduser){
-    return await db.findOne("usuario",iduser)
+    return await db.findOne("usuario",iduser);
 }
 
 async function alterarUsuario(user){
     return await db.updateOne("usuario",user, {_id : user._id});
 }
 
-module.exports = {registrarUsuario, buscarUsuario, alterarUsuario};
+async function sair(_id){
+    return await db.deleteOne("usuario",iduser);
+}
+
+module.exports = {registrarUsuario, buscarUsuario, alterarUsuario, sair};
