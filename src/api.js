@@ -1,8 +1,9 @@
 var express = require('express');
+const cors = require('cors');
 var app = express();
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-
+app.use(cors({origin:'*'}))
 const router = express.Router();
 
 const token = require("./util/token");
